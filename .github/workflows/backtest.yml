@@ -1,33 +1,36 @@
-name: backtest-one
+name: Run backtests automatically
 
 on:
-  workflow_dispatch: {}   # запуск вручную через кнопку
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  run:
+  backtest:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - env:
-          GH_TOKEN: ${{ github.token }}
+          python-version: '3.10'
+
+      - name: Install dependencies
         run: |
-          gh release download data --repo "$GITHUB_REPOSITORY" \
-            -p "bybit-bot_code.zip" \
-            -p "BTCUSDT.csv.gz" \
-            -p "ETHUSDT.csv.gz"
-          unzip -o bybit-bot_code.zip -d bybit-bot
-          pip install -U pip
-          pip install -r bybit-bot/requirements.txt || pip install numpy pandas pyarrow pyyaml tqdm
-          python bybit-bot/run_v5plus_vt.py \
-            --symbol BTCUSDT --data ./BTCUSDT.csv.gz --tz UTC \
-            --tf 60min --mode trend \
-            --donch 100 --adx-thresh 30 \
-            --max-lev 1 --target-vol 1000000000 --vol-win 24 \
-            --be-R 1.2 --cooldown 72 --no-progress
-      - uses: actions/upload-artifact@v4
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run backtest for BTCUSDT
+        run: |
+          python run_v5plus_vt.py --symbol BTCUSDT --data ./BTCUSDT.csv.gz --tz UTC --tf 60min --mode trend --donch 2880 --adx-thresh 25 --max-lev 1 --target-vol 1000000000 --vol-win 1440 --no-tp --be-R 1.5 --cooldown 12
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
         with:
-          name: results
-          path: results_BTCUSDT_vt.parquet
+          name: backtest-results
+          path: |
+            results_BTCUSDT_vt.parquet
+            equity_1000.csv
