@@ -1,4 +1,4 @@
-from afree_gridbot import GridConfig, run_simple_grid_backtest
+from educational_gridbot import GridConfig, run_simple_grid_backtest
 
 
 prices = [100, 103, 101, 106, 109, 104, 111]
