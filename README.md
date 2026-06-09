@@ -1,62 +1,101 @@
-# AFree GridBot
+<div align="center">
 
-<p align="center">
-  <img alt="AFree GridBot" src="https://capsule-render.vercel.app/api?type=rect&color=0:0EA5E9,100:22C55E&height=120&section=header&text=AFree%20GridBot&fontColor=ffffff&fontSize=38&fontAlignY=52" />
+<img alt="AFree GridBot" src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:22C55E,100:111827&height=190&section=header&text=AFree%20GridBot&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=Backtest-first%20grid%20trading%20workspace&descAlignY=58&descSize=18" />
+
+<p>
+  <img alt="Status" src="https://img.shields.io/badge/status-research%20workspace-0EA5E9?style=for-the-badge" />
+  <img alt="Mode" src="https://img.shields.io/badge/mode-backtest%20first-22C55E?style=for-the-badge" />
+  <img alt="Safety" src="https://img.shields.io/badge/secrets-never%20commit-F59E0B?style=for-the-badge" />
 </p>
 
-<p align="center">
-  <img alt="Project status" src="https://img.shields.io/badge/status-planning%20workspace-0EA5E9?style=for-the-badge" />
-  <img alt="Focus" src="https://img.shields.io/badge/focus-trading%20research-22C55E?style=for-the-badge" />
-  <img alt="Safety" src="https://img.shields.io/badge/mode-backtest%20first-F59E0B?style=for-the-badge" />
-</p>
+<strong>A clean starting point for planning, testing, and documenting grid-trading ideas before live execution.</strong>
 
-AFree GridBot is a lightweight workspace for designing, documenting, and testing grid-trading ideas before they ever touch a live account.
+</div>
 
-The useful part is not "press button, make money". The useful part is discipline: define strategy rules, record risk limits, test assumptions, and keep credentials outside the codebase.
+---
 
-## What it can help with
+## Why this exists
 
-- Plan grid-trading strategies in a clear, repeatable format.
-- Separate strategy ideas from exchange credentials and live execution.
-- Prepare a backtesting loop before any real market interaction.
-- Track risk rules such as position size, stop conditions, and max exposure.
-- Build a small foundation for future automation without rushing into live trading.
+AFree GridBot is not a magic trading button. It is a practical workspace for turning a rough market idea into a documented, testable strategy.
 
-## How the project should grow
+It helps you slow down the risky parts: define the grid, write down risk limits, test assumptions, and keep credentials out of the repository.
+
+<table>
+  <tr>
+    <td width="33%">
+      <h3>Plan</h3>
+      <p>Write the market, timeframe, grid spacing, capital limits, and stop rules before coding.</p>
+    </td>
+    <td width="33%">
+      <h3>Test</h3>
+      <p>Use backtests and dry runs to catch weak assumptions before any real account is involved.</p>
+    </td>
+    <td width="33%">
+      <h3>Protect</h3>
+      <p>Keep API keys, wallet data, account exports, and generated reports away from commits.</p>
+    </td>
+  </tr>
+</table>
+
+## What it can be useful for
+
+- Designing grid-trading strategies in a repeatable format.
+- Comparing grid settings before touching live funds.
+- Recording risk limits such as max exposure, max drawdown, and stop conditions.
+- Preparing a future bot implementation with safer defaults.
+- Creating a small research log that explains why a strategy exists.
+
+## Project flow
 
 ```mermaid
 flowchart LR
-    A[Market idea] --> B[Grid settings]
+    A[Market idea] --> B[Strategy template]
     B --> C[Risk limits]
-    C --> D[Backtest]
+    C --> D[Backtest plan]
     D --> E[Dry run]
     E --> F[Optional live mode]
 
-    C -. required .-> G[No secrets in repo]
-    D -. produces .-> H[Reports and notes]
+    C -. required .-> G[No secrets in Git]
+    D -. produces .-> H[Reports and review notes]
+    E -. validates .-> I[Execution assumptions]
 ```
 
-## Practical workflow
+## Quick start
 
-1. Define the market and timeframe.
-2. Choose grid spacing, order count, and capital limits.
-3. Run a backtest with historical or sample data.
-4. Review drawdown, fees, missed fills, and worst-case exposure.
-5. Only then consider a dry-run mode with fake or sandbox credentials.
+1. Copy `config.example.env` into a private local config file.
+2. Fill `docs/strategy-template.md` with placeholder or test data first.
+3. Define grid range, order size, and stop conditions.
+4. Backtest with historical or sample data.
+5. Review fees, slippage, drawdown, and worst-case exposure.
+6. Only consider dry-run or live execution after the assumptions are written down.
+
+## Included planning files
+
+| File | Purpose |
+| --- | --- |
+| `docs/strategy-template.md` | A structured template for writing a grid strategy before implementation. |
+| `config.example.env` | Safe placeholder configuration names without real secrets. |
+| `FORK_NOTES.md` | Maintenance and review notes for this repository. |
+| `ACTIVITY.md` | Small dated project updates. |
 
 ## Safety rules
 
-- Do not commit API keys, seed phrases, private keys, exchange tokens, or account exports.
+> Treat this repository as research infrastructure, not financial advice.
+
+- Never commit API keys, seed phrases, private keys, exchange tokens, or account exports.
 - Do not run against a live account until the backtest and dry-run path are documented.
-- Treat every strategy result as research, not financial advice.
 - Keep generated reports and large datasets out of Git unless they are intentional sample fixtures.
+- Prefer small, reviewable changes over hidden automation.
 
-## Suggested next files
+## Roadmap
 
-- `config.example.env` for placeholder-only configuration names.
-- `docs/strategy-template.md` for writing down a grid strategy before coding it.
-- `docs/backtest-plan.md` for expected inputs, outputs, and acceptance checks.
+- Add `docs/backtest-plan.md` for data inputs, outputs, and acceptance checks.
+- Add a minimal sample dataset or fixture.
+- Add a dry-run checklist.
+- Add a simple strategy scoring format for comparing grid settings.
 
-## Current status
+<div align="center">
 
-This repository is currently a planning workspace. The next useful change is to add a minimal strategy template and a no-secrets configuration example.
+<img alt="GridBot footer" src="https://capsule-render.vercel.app/api?type=rect&color=0:111827,100:0EA5E9&height=90&section=footer&text=Research%20first.%20Secrets%20never.&fontColor=ffffff&fontSize=24" />
+
+</div>
