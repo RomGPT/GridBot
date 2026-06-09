@@ -1,0 +1,17 @@
+[project]
+name = "free-educational-grid-bot"
+version = "0.1.0"
+description = "A free educational grid-bot workspace for learning grid strategy planning and toy backtests."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
