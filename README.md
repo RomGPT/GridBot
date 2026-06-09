@@ -1,101 +1,115 @@
 <div align="center">
 
-<img alt="AFree GridBot" src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:22C55E,100:111827&height=190&section=header&text=AFree%20GridBot&fontColor=ffffff&fontSize=46&fontAlignY=38&desc=Backtest-first%20grid%20trading%20workspace&descAlignY=58&descSize=18" />
+<img alt="Free Educational Grid Bot" src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:22C55E,100:111827&height=190&section=header&text=Free%20Educational%20Grid%20Bot&fontColor=ffffff&fontSize=36&fontAlignY=38&desc=Learn%20grid%20trading%20with%20backtests,%20risk%20rules,%20and%20safe%20examples&descAlignY=58&descSize=15" />
 
 <p>
-  <img alt="Status" src="https://img.shields.io/badge/status-research%20workspace-0EA5E9?style=for-the-badge" />
+  <img alt="Purpose" src="https://img.shields.io/badge/purpose-education-0EA5E9?style=for-the-badge" />
   <img alt="Mode" src="https://img.shields.io/badge/mode-backtest%20first-22C55E?style=for-the-badge" />
   <img alt="Safety" src="https://img.shields.io/badge/secrets-never%20commit-F59E0B?style=for-the-badge" />
 </p>
 
-<strong>A clean starting point for planning, testing, and documenting grid-trading ideas before live execution.</strong>
+<strong>A free educational grid-bot workspace for learning strategy design, backtesting, and risk discipline.</strong>
 
 </div>
 
 ---
 
-## Why this exists
+## Purpose
 
-AFree GridBot is not a magic trading button. It is a practical workspace for turning a rough market idea into a documented, testable strategy.
+Free Educational Grid Bot is a learning project. Its goal is to help beginners understand how grid-trading systems are planned, tested, and reviewed before any real exchange account is involved.
 
-It helps you slow down the risky parts: define the grid, write down risk limits, test assumptions, and keep credentials out of the repository.
+This repository is intentionally education-first: it contains templates, safe example configuration, and simple Python helpers for grid levels and toy backtests. It is not financial advice and it is not a production trading system.
 
 <table>
   <tr>
     <td width="33%">
-      <h3>Plan</h3>
-      <p>Write the market, timeframe, grid spacing, capital limits, and stop rules before coding.</p>
+      <h3>Learn</h3>
+      <p>Understand grid ranges, order spacing, fees, and why risk limits matter.</p>
     </td>
     <td width="33%">
-      <h3>Test</h3>
-      <p>Use backtests and dry runs to catch weak assumptions before any real account is involved.</p>
+      <h3>Practice</h3>
+      <p>Run small local examples with fake prices and placeholder configuration.</p>
     </td>
     <td width="33%">
-      <h3>Protect</h3>
-      <p>Keep API keys, wallet data, account exports, and generated reports away from commits.</p>
+      <h3>Stay Safe</h3>
+      <p>Keep real credentials, wallet data, private keys, and account exports out of Git.</p>
     </td>
   </tr>
 </table>
 
-## What it can be useful for
+## What you can learn here
 
-- Designing grid-trading strategies in a repeatable format.
-- Comparing grid settings before touching live funds.
-- Recording risk limits such as max exposure, max drawdown, and stop conditions.
-- Preparing a future bot implementation with safer defaults.
-- Creating a small research log that explains why a strategy exists.
+- How a grid is split into price levels.
+- How fee assumptions can change strategy results.
+- Why backtesting should happen before dry-run or live execution.
+- How to write strategy assumptions before touching trading code.
+- How to keep an educational bot separate from real exchange credentials.
 
 ## Project flow
 
 ```mermaid
 flowchart LR
-    A[Market idea] --> B[Strategy template]
-    B --> C[Risk limits]
-    C --> D[Backtest plan]
-    D --> E[Dry run]
-    E --> F[Optional live mode]
+    A[Learning goal] --> B[Strategy template]
+    B --> C[Grid levels]
+    C --> D[Toy backtest]
+    D --> E[Review risk]
+    E --> F[Dry-run checklist]
 
-    C -. required .-> G[No secrets in Git]
-    D -. produces .-> H[Reports and review notes]
-    E -. validates .-> I[Execution assumptions]
+    B -. documents .-> G[Assumptions]
+    C -. uses .-> H[Safe sample data]
+    E -. blocks .-> I[No live trading by default]
 ```
 
 ## Quick start
 
-1. Copy `config.example.env` into a private local config file.
-2. Fill `docs/strategy-template.md` with placeholder or test data first.
-3. Define grid range, order size, and stop conditions.
-4. Backtest with historical or sample data.
-5. Review fees, slippage, drawdown, and worst-case exposure.
-6. Only consider dry-run or live execution after the assumptions are written down.
+```bash
+python examples/simple_backtest.py
+```
 
-## Included planning files
+For local imports from a fresh clone, run from the repository root with `PYTHONPATH=src` or install the package in editable mode after adding your preferred Python environment.
 
-| File | Purpose |
+## Useful files and folders
+
+| Path | Purpose |
 | --- | --- |
-| `docs/strategy-template.md` | A structured template for writing a grid strategy before implementation. |
-| `config.example.env` | Safe placeholder configuration names without real secrets. |
-| `FORK_NOTES.md` | Maintenance and review notes for this repository. |
-| `ACTIVITY.md` | Small dated project updates. |
+| `src/afree_gridbot/grid.py` | Builds evenly spaced grid levels for educational experiments. |
+| `src/afree_gridbot/backtest.py` | Runs a tiny research-only grid crossing score over fake price data. |
+| `examples/simple_backtest.py` | Shows how to call the helper code with sample prices. |
+| `docs/strategy-template.md` | Template for writing strategy assumptions before coding. |
+| `docs/backtest-plan.md` | Checklist for reproducible toy backtests. |
+| `config.example.env` | Placeholder-only configuration names without real secrets. |
+| `tests/test_grid.py` | Small tests for the educational helper functions. |
+
+## Example idea
+
+```python
+from afree_gridbot import GridConfig, run_simple_grid_backtest
+
+prices = [100, 103, 101, 106, 109, 104, 111]
+config = GridConfig(lower_price=95, upper_price=115, grid_count=6)
+result = run_simple_grid_backtest(prices, config, order_size=10)
+
+print(result)
+```
 
 ## Safety rules
 
-> Treat this repository as research infrastructure, not financial advice.
+> This project is for education and research. It should not be treated as financial advice or a live trading bot.
 
 - Never commit API keys, seed phrases, private keys, exchange tokens, or account exports.
-- Do not run against a live account until the backtest and dry-run path are documented.
+- Use fake prices, sandbox data, or historical sample data while learning.
+- Do not connect a live account until the strategy, risk limits, and dry-run behavior are documented.
 - Keep generated reports and large datasets out of Git unless they are intentional sample fixtures.
-- Prefer small, reviewable changes over hidden automation.
 
 ## Roadmap
 
-- Add `docs/backtest-plan.md` for data inputs, outputs, and acceptance checks.
-- Add a minimal sample dataset or fixture.
+- Add more beginner-friendly examples.
 - Add a dry-run checklist.
-- Add a simple strategy scoring format for comparing grid settings.
+- Add sample CSV data for offline learning.
+- Add strategy comparison notes for different grid settings.
 
 <div align="center">
 
-<img alt="GridBot footer" src="https://capsule-render.vercel.app/api?type=rect&color=0:111827,100:0EA5E9&height=90&section=footer&text=Research%20first.%20Secrets%20never.&fontColor=ffffff&fontSize=24" />
+<img alt="GridBot footer" src="https://capsule-render.vercel.app/api?type=rect&color=0:111827,100:0EA5E9&height=90&section=footer&text=Education%20first.%20Live%20trading%20last.&fontColor=ffffff&fontSize=24" />
 
 </div>
