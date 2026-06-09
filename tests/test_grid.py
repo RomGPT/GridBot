@@ -1,4 +1,4 @@
-from afree_gridbot import GridConfig, build_grid_levels, run_simple_grid_backtest
+from educational_gridbot import GridConfig, build_grid_levels, run_simple_grid_backtest
 
 
 def test_build_grid_levels_includes_bounds():
