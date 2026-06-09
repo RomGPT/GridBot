@@ -1,4 +1,4 @@
-"""AFree GridBot research helpers."""
+"""Free Educational Grid Bot research helpers."""
 
 from .grid import GridConfig, build_grid_levels
 from .backtest import BacktestResult, run_simple_grid_backtest
