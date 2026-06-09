@@ -63,27 +63,34 @@ flowchart LR
 ## Quick start
 
 ```bash
+python -m pip install -e .
 python examples/simple_backtest.py
 ```
 
-For local imports from a fresh clone, run from the repository root with `PYTHONPATH=src` or install the package in editable mode after adding your preferred Python environment.
+You can also run tests after installing development dependencies:
+
+```bash
+python -m pip install -e .[dev]
+python -m pytest
+```
 
 ## Useful files and folders
 
 | Path | Purpose |
 | --- | --- |
-| `src/afree_gridbot/grid.py` | Builds evenly spaced grid levels for educational experiments. |
-| `src/afree_gridbot/backtest.py` | Runs a tiny research-only grid crossing score over fake price data. |
+| `src/educational_gridbot/grid.py` | Builds evenly spaced grid levels for educational experiments. |
+| `src/educational_gridbot/backtest.py` | Runs a tiny research-only grid crossing score over fake price data. |
 | `examples/simple_backtest.py` | Shows how to call the helper code with sample prices. |
 | `docs/strategy-template.md` | Template for writing strategy assumptions before coding. |
 | `docs/backtest-plan.md` | Checklist for reproducible toy backtests. |
 | `config.example.env` | Placeholder-only configuration names without real secrets. |
 | `tests/test_grid.py` | Small tests for the educational helper functions. |
+| `pyproject.toml` | Python project metadata and test configuration. |
 
 ## Example idea
 
 ```python
-from afree_gridbot import GridConfig, run_simple_grid_backtest
+from educational_gridbot import GridConfig, run_simple_grid_backtest
 
 prices = [100, 103, 101, 106, 109, 104, 111]
 config = GridConfig(lower_price=95, upper_price=115, grid_count=6)
