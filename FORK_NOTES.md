@@ -11,3 +11,8 @@ Quick local notes for this repo.
 ## Next step
 
 Document the minimal run/setup flow and add one small maintenance note when needed.
+
+## 2026-08-18 Maintenance Note
+
+- Documentation-only check-in to keep repository activity visible.
+- Next docs pass: verify the setup and status notes still match the current project intent.
